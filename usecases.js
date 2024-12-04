@@ -15,10 +15,10 @@ function attendance() {
         return true;
     }
     else{
-        
         return false;
     }
 }
+
 // calculate working hours
 function emp_working_hour (){
     const random = ran();
@@ -34,8 +34,15 @@ function emp_working_hour (){
 // calculate wages of employee and tell part-time or full-time employee
 function wages() {
    let att = attendance();
-   (att===true) ? console.log("employee is present !!"):console.log("employee is absent !!");
-    switch(emp_working_hour()) {
+   if(att===true){
+    console.log("employee is present !!");
+    }
+   else{
+    console.log("employee is absent !!");
+    return;
+    }    
+
+switch(emp_working_hour()) {
         case 8 : console.log(`you are a full-time employee with daily working wage = ${total_wage}`);
         break;
         case 4 :console.log(`you are a part-time employee with daily working wage = ${total_wage}`);
@@ -43,6 +50,7 @@ function wages() {
         default : console.log(`you are a no-time employee with daily working wage = ${0}`);
     }
 }
+
 // calculate monthly wage
 function month_wage() {
     var total_month_wage = 0;
@@ -55,8 +63,24 @@ function month_wage() {
     console.log(`your monthly wage is ${total_month_wage}`);
 }
 
+// calculate wage till working hours of 160 or max days of 20
+function conditional_wage_calculation() {
+    var final_wage = 0;
+    var total_hour = 0;
+    var days = 0;
+    while(days<20 && total_hour<=160){
+        if(attendance()===true){
+            total_hour += emp_working_hour();
+            final_wage += total_wage;
+        }
+        days++;
+    }
+    console.log(`your conditionally calculate monthly wage is ${final_wage}`);
+}
+
 wages();
 month_wage();
+conditional_wage_calculation();
 
  
 
