@@ -3,9 +3,14 @@ const part_time = 4;
 const full_time = 8;
 var total_wage ;
 
+// generate random number
+function ran(){
+    return Math.floor(Math.random()*10)+1;
+}
+
 //check if present or not
 function attendance() {
-    const val = Math.floor(Math.random()*10)+1;
+    const val = ran();
     if (val>6){
         console.log("employee is present !!");
         wages();
@@ -14,22 +19,25 @@ function attendance() {
         console.log("employee is absent !!");
     }
 }
+// calculate working hours
+function emp_working_hour (){
+    const random = ran();
+    let emp_hour = part_time; 
+    if(random>5) {
+        emp_hour = full_time;
+    }
+    return emp_hour;
+}
 
 // calculate wages of employee and tell part-time or full-time employee
 function wages() {
-    const random = Math.floor(Math.random()*10)+1
-    let emp_type = "part";
-    let emp_working_hour = part_time; 
-    if(random>5) {
-        emp_type = "full"
-        emp_working_hour = full_time;
-    }
     //total
-    total_wage = emp_working_hour* working_wages;
-    switch(emp_type) {
-        case "full" : console.log(`you are a full-time employee with working wage = ${total_wage}`);
+    total_wage = emp_working_hour()* working_wages;
+
+    switch(emp_working_hour()) {
+        case 8 : console.log(`you are a full-time employee with working wage = ${total_wage}`);
         break;
-        case "part" :console.log(`you are a part-time employee with working wage = ${total_wage}`);
+        case 4 :console.log(`you are a part-time employee with working wage = ${total_wage}`);
         break;
         default : console.log(`you are a no-time employee with working wage = ${0}`);
     }
