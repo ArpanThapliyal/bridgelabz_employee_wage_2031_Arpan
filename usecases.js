@@ -2,6 +2,9 @@ const working_wages = 20;
 const part_time = 4;
 const full_time = 8;
 let total_wage ;
+let month = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+let obj ={ } // object for anual data
+let uni=0;   // universal indexing 
 
 // generate random number
 function ran(){
@@ -54,13 +57,16 @@ switch(emp_working_hour()) {
 // calculate monthly wage
 function month_wage() {
     var total_month_wage = 0;
+    var total_month_hour = 0;
     for(let val=0;val<20;val++){
         if(attendance()===true){
-            emp_working_hour();
+            total_month_hour+=emp_working_hour();
             total_month_wage += total_wage;
         }
-    }
-    console.log(`your monthly wage is ${total_month_wage}`);
+    } 
+    obj["total_month_hour"] = total_month_hour;
+    obj["total_month_wage"] = total_month_wage;
+
     return total_month_wage;
 
 }
@@ -79,18 +85,26 @@ function conditional_wage_calculation() {
     }
     console.log(`your conditionally calculate monthly wage is ${final_wage}`);
 }
+
 // calculate wage for 12 months
+let arr = [];
 function anually_wage(){
     var anually = 0;
-    for(let mon=0;mon<12 ;mon++){
+    uni=0;
+    for(let i=0;i<12 ;i++){
+        obj["month"]=month[i];
         anually+=month_wage();
-    }
+        arr[i] = obj;
+        obj={};    
+    } 
     console.log(`total anual wage is ${anually}`);
+    console.log(arr);
 }
 // wages();
-// month_wage();
+// console.log(`your monthly wage is ${month_wage()}`);
 // conditional_wage_calculation();
 anually_wage();
+
 
  
 
