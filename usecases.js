@@ -61,6 +61,8 @@ function month_wage() {
         }
     }
     console.log(`your monthly wage is ${total_month_wage}`);
+    return total_month_wage;
+
 }
 
 // calculate wage till working hours of 160 or max days of 20
@@ -77,10 +79,18 @@ function conditional_wage_calculation() {
     }
     console.log(`your conditionally calculate monthly wage is ${final_wage}`);
 }
-
-wages();
-month_wage();
-conditional_wage_calculation();
+// calculate wage for 12 months
+function anually_wage(){
+    var anually = 0;
+    for(let mon=0;mon<12 ;mon++){
+        anually+=month_wage();
+    }
+    console.log(`total anual wage is ${anually}`);
+}
+// wages();
+// month_wage();
+// conditional_wage_calculation();
+anually_wage();
 
  
 
